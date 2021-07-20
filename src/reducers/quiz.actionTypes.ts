@@ -12,7 +12,7 @@ export type QUIZ_INITIAL_STATE = {
 
 export type ACTION =
   | { type: "INITIALIZE_QUIZ"; payload: { quiz: Array<Quiz> } }
-  | { type: "INITIALIZE_CURRENT_QUIZ"; payload: { quizID: string } }
+  | { type: "INITIALIZE_CURRENT_QUIZ"; payload: { quizId: string } }
   | {
       type: "SELECTED_OPTION_ID";
       payload: { optionId: string; questionId: string };

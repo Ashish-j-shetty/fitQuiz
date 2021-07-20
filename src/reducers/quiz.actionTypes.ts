@@ -21,7 +21,7 @@ export type ACTION =
   | { type: "INCREMENT_SCORE"; payload: { score: number } }
   | { type: "DECREMENT_SCORE"; payload: { score: number } }
   | { type: "RESET_SCORE" }
-  | { type: "INCREMENT_QUESTION_N0" }
+  | { type: "INCREMENT_QUESTION_NO" }
   | { type: "RESET_QUESTION_NUMBER" }
   | { type: "DECREMENT_TIMER" }
   | { type: "RESET_TIMER" }

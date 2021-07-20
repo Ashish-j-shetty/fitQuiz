@@ -14,6 +14,12 @@ export const quizReducer = (
   action: ACTION
 ): QUIZ_INITIAL_STATE => {
   switch (action.type) {
+    case "INITIALIZE_QUIZ":
+      return {
+        ...state,
+        quiz: action.payload.quiz,
+      };
+
     default:
       return state;
   }

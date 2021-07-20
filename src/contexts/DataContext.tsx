@@ -1,6 +1,9 @@
-import { useContext, useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import { createContext } from "react";
+
+import { Quiz } from "../reducers/quiz.data.types";
 import { quizInitalState, quizReducer } from "../reducers/quiz.reducer";
+import { getQuiz } from "../services/quiz";
 import { DATA_CONTEXT } from "./dataContext.types";
 
 const DataContext = createContext<DATA_CONTEXT>({
@@ -10,8 +13,18 @@ const DataContext = createContext<DATA_CONTEXT>({
 
 export const useData = () => useContext(DataContext);
 
-export const DataProvide: React.FC = ({ children }) => {
+export const DataProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(quizReducer, quizInitalState);
+
+  const initializeQuiz = async () => {
+    const quiz = await getQuiz();
+
+    quiz && dispatch({ type: "INITIALIZE_QUIZ", payload: { quiz } });
+  };
+
+  useEffect(() => {
+    initializeQuiz();
+  }, []);
 
   return (
     <DataContext.Provider value={{ state, dispatch }}>

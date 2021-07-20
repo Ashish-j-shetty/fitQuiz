@@ -1,7 +1,6 @@
 export type Option = {
   id: string;
   text: string;
-
   isAnswer: boolean;
 };
 
@@ -20,5 +19,5 @@ export type Quiz = {
   name: string;
   id: string;
   questions: Array<Question>;
-  totalScore?: number;
+  totalScore: number;
 };

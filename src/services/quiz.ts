@@ -2,12 +2,14 @@ import axios from "axios";
 import { BASE_URL } from "../constants/urlConstants";
 export const getQuiz = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}`);
+    const {
+      data: { success, quiz },
+    } = await axios.get(`${BASE_URL}`);
 
-    if (response.data.success) {
-      console.log({ response });
+    if (success) {
+      return quiz;
     }
   } catch (error) {
-    console.log(error);
+    return error;
   }
 };

@@ -1,7 +1,7 @@
 export type Option = {
   id: string;
   text: string;
-  isAnswer: boolean;
+  isAnwer: boolean;
 };
 
 export type Question = {

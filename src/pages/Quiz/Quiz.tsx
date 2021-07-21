@@ -21,7 +21,27 @@ export default function Quiz() {
     dispatch({ type: "INITIALIZE_CURRENT_QUIZ", payload: { quizId } });
   }, [quizId, dispatch]);
 
-  const clickHandler = async (option: Option) => {
+  const updateScore = (option: Option, questionNo: number) => {
+    console.log(option);
+    console.log(currentQuestion);
+    option.isAnwer
+      ? dispatch({
+          type: "INCREMENT_SCORE",
+          payload: { score: currentQuestion?.points },
+        })
+      : dispatch({
+          type: "DECREMENT_SCORE",
+          payload: { score: currentQuestion?.negativePoints },
+        });
+
+    questionNo + 1 === currentQuiz?.questions.length
+      ? navigate("/result", { replace: true })
+      : dispatch({
+          type: "INCREMENT_QUESTION_NO",
+        });
+  };
+
+  const clickHandler = async (option: Option, questionNo: number) => {
     setSelectedOption(() => option.id);
 
     dispatch({
@@ -33,6 +53,7 @@ export default function Quiz() {
       type: "DISABLE_CLICK",
     });
     setTimeout(() => {
+      updateScore(option, questionNo);
       dispatch({ type: "ENABLE_CLICK" });
     }, 1000);
   };
@@ -58,19 +79,20 @@ export default function Quiz() {
             {currentQuestion.options.map((option) => {
               return (
                 <button
-                  onClick={() => clickHandler(option)}
-                  className={`block w-full rounded-3xl text-lg font-semibold my-6 py-6 bg-green-800
-                  
-                      transition-colors duration-200 ease-in
-                      ${!isClickable && option.isAnswer && "bg-green-600"}
+                  disabled={!isClickable}
+                  onClick={() => {
+                    clickHandler(option, questionNo);
+                  }}
+                  className={`block w-full rounded-3xl text-lg font-semibold my-6  py-6  bg-gray-900 transition-colors duration-200 ease-in
+                  ${!isClickable && option.isAnwer && "bg-green-600 "}
                       ${
                         option.id === selectedOption &&
-                        !option.isAnswer &&
+                        !option.isAnwer &&
                         !isClickable &&
                         "bg-red-600"
                       }
+                      
                       `}
-                  disabled={!isClickable}
                 >
                   {option.text}
                 </button>

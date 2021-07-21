@@ -17,14 +17,12 @@ export type ACTION =
       type: "SELECTED_OPTION_ID";
       payload: { optionId: string; questionId: string };
     }
-  | { type: "RESET_STATE"; payload: { quizId: string } }
+  | { type: "RESET_QUIZ" }
   | { type: "INCREMENT_SCORE"; payload: { score: number } }
   | { type: "DECREMENT_SCORE"; payload: { score: number } }
   | { type: "RESET_SCORE" }
   | { type: "INCREMENT_QUESTION_NO" }
   | { type: "RESET_QUESTION_NUMBER" }
-  | { type: "DECREMENT_TIMER" }
-  | { type: "RESET_TIMER" }
   | { type: "SET_QUIZ_ID"; payload: { quizId: string } }
   | { type: "ENABLE_CLICK" }
   | { type: "DISABLE_CLICK" };

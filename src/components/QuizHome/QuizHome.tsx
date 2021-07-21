@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useData } from "../../contexts/DataContext";
 import { Quiz } from "../../reducers/quiz.data.types";
@@ -5,6 +6,12 @@ import { Quiz } from "../../reducers/quiz.data.types";
 type QUIZ_ITEM = { item: Quiz };
 
 function QuizCard({ item }: QUIZ_ITEM) {
+  const { dispatch } = useData();
+
+  useEffect(() => {
+    dispatch({ type: "RESET_QUIZ" });
+  }, [dispatch]);
+
   return (
     <Link to={`/${item.id}`}>
       <div className="rounded-3xl h-full bg-green-800">

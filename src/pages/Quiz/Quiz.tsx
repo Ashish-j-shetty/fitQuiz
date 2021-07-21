@@ -75,6 +75,11 @@ export default function Quiz() {
             </p>
           </div>
           <h3 className="font-bold my-4 text-lg">{currentQuestion.question}</h3>
+          <img
+            className="w-full rounded-3xl"
+            src={currentQuestion.img}
+            alt={currentQuestion.question}
+          />
           <div className="my-16">
             {currentQuestion.options.map((option) => {
               return (

@@ -83,6 +83,12 @@ export const quizReducer = (
         questionNo: state.questionNo + 1,
       };
 
+    case "RESET_QUIZ":
+      return {
+        ...quizInitalState,
+        quiz: state.quiz,
+      };
+
     default:
       return state;
   }
